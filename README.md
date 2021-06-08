@@ -1,8 +1,8 @@
 ---
 title: "README"
 author: "Jimin KIM"
-date: '2021 6 8 '
-output: rmarkdown::github_document
+date: '2021.06.08'
+output: "rmarkdown::github_document"
 ---
 
 
