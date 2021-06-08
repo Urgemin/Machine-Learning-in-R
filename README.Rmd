@@ -2,7 +2,7 @@
 title: "README"
 author: "Jimin KIM"
 date: '2021 6 8 '
-output: github_document
+output: rmarkdown::github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -29,4 +29,4 @@ BAS_YM <- format(Sys.Date(),'%Y%m')
 print(BAS_YM)
 sprintf("작업년월 : %s", BAS_YM)
 ```
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
