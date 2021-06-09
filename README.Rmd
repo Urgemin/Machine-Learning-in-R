@@ -8,23 +8,13 @@ output: rmarkdown::github_document
 
 ```{r, include=FALSE}
 
-library(lubridate)
 
 TRNS_MNTH <-function(date, mm) {
 
 date <- as.Date(paste0(date,'01'), format='%Y%m%d')
-bas_date <- as.Date(ifelse(mm < 0, date+months(-1), date+months(1)), origin = '1970-01-01')
-
 lubridate::month(date) <-lubridate::month(date)+mm
 date <- format(date, by='month', length=1, '%Y%m')
-bas_date <- format(bas_date, by='month',length=1, '%Y%m')
-
-if (abs(mm) > 1){
-  return(c(bas_date,date))
-  } 
-else {
   return(date)
-}
 }
 
 
@@ -36,18 +26,17 @@ else {
 
 ```{r, echo=FALSE}
 #WRK_YM <- format(Sys.Date(),'%Y%m')
+
+## 작업년월 설정
 WRK_YM <- "202104"
 
 target_m <- -3
 train_m <- -12
 test_m <- -12
 
-
-sprintf("작업년월 : %s", WRK_YM)
 sprintf("타겟기간 : %d개월", -target_m)
 sprintf("학습기간 : %d개월", -train_m)
 sprintf("검증기간 : %d개월", -test_m)
-
 
 ```
 
@@ -55,20 +44,28 @@ sprintf("검증기간 : %d개월", -test_m)
 
 ```{r, echo=FALSE}
 
-TARGET_YM <- TRNS_MNTH(WRK_YM, target_m)
-TRAIN_YM <- TRNS_MNTH(TARGET_YM[2], train_m)
-TEST_YM <- TRNS_MNTH(TRAIN_YM[2], test_m)
+TARGET_ST <- TRNS_MNTH(WRK_YM, -1)
+TARGET_FN <- TRNS_MNTH(WRK_YM, target_m)
 
-#NEW_YM <- TRNS_MNTH(WRK_YM, 12)
+TRAIN_ST <- TRNS_MNTH(TARGET_FN, -1)
+TRAIN_FN <- TRNS_MNTH(TARGET_FN, train_m)
 
-#print(TARGET_YM)
-#print(TRAIN_YM)
-#print(TEST_YM)
-#print(NEW_YM)
+TEST_ST <- TRNS_MNTH(TRAIN_FN, -1)
+TEST_FN <- TRNS_MNTH(TRAIN_FN, test_m)
 
-sprintf("타겟 대상기간 : %s ~ %s", TARGET_YM[2], TARGET_YM[1])
-sprintf("학습 대상기간 : %s ~ %s", TRAIN_YM[2], TRAIN_YM[1])
-sprintf("검증 대상기간 : %s ~ %s", TEST_YM[2], TEST_YM[1])
+#print(TARGET_ST)
+#print(TARGET_FN)
+#print(TRAIN_ST)
+#print(TRAIN_FN)
+#print(TEST_ST)
+#print(TEST_FN)
+
+sprintf("작업년월 : %s", WRK_YM)
+sprintf("타겟 대상기간 : %s ~ %s", TARGET_FN, TARGET_ST)
+sprintf("기준년월 : %s", TRAIN_ST)
+sprintf("학습 대상기간 : %s ~ %s", TRAIN_FN, TRAIN_ST)
+sprintf("검증 대상기간 : %s ~ %s", TEST_FN, TEST_ST)
+
 
 ```
 
