@@ -68,8 +68,8 @@ sprintf("검증 대상기간 : %s ~ %s", TEST_FN, TEST_ST)
 
 ```
 
-```{r, echo=False}
+```{r, echo=FALSE}
 c<-c(1,2,3)
 a <- data.frame(c)
-print(a)
+knitr::kable(a, caption = "Table a")
 ```
