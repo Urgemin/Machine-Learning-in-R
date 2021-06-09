@@ -5,7 +5,6 @@ date: "2021.06.08"
 output: rmarkdown::github_document
 ---
 
-
 ```{r, include=FALSE}
 
 
@@ -68,7 +67,8 @@ sprintf("검증 대상기간 : %s ~ %s", TEST_FN, TEST_ST)
 
 
 ```
-```{r}
+
+```{r, echo=False}
 c<-c(1,2,3)
 a <- data.frame(c)
 print(a)
