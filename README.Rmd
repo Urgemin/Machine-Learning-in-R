@@ -69,7 +69,12 @@ sprintf("검증 대상기간 : %s ~ %s", TEST_FN, TEST_ST)
 ```
 
 ```{r, echo=FALSE}
-c<-c(1,2,3)
-a <- data.frame(c)
-knitr::kable(a, caption = "Table a")
+PRD <- list(WRK_YM,
+            paste0(TARGET_FN," ~ ", TARGET_ST),
+            TRAIN_ST,
+            paste0(TRAIN_FN," ~ ", TRAIN_ST),
+            paste0(TEST_FN," ~ ", TEST_ST))
+PRD_df <- as.data.frame(PRD,col.names = c("작업년월","타겟기간","기준년월","학습기간","검증기간"))
+
+knitr::kable(PRD_df,caption="분석기간 정의")
 ```
