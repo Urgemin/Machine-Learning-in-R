@@ -2,9 +2,12 @@
 title: "예측모델" 
 author: "Jimin KIM"  
 date: "2021.06.08"  
-output: rmarkdown::github_document
+output: 
+  rmarkdown::github_document :
+    toc : true
+    toc_depth : 3
 ---
-
+   
 ```{r, include=FALSE}
 
 
@@ -19,9 +22,10 @@ date <- format(date, by='month', length=1, '%Y%m')
 
 ```
 
-# 분석모델 분석기간
+## 분석모델 분석기간
 
-## 분석기간 정의
+   
+### 분석기간 정의
 
 ```{r, echo=FALSE}
 #WRK_YM <- format(Sys.Date(),'%Y%m')
@@ -38,8 +42,8 @@ sprintf("학습기간 : %d개월", -train_m)
 sprintf("검증기간 : %d개월", -test_m)
 
 ```
-
-## 분석기간 대상
+   
+### 분석기간 대상
 
 ```{r, echo=FALSE}
 
@@ -67,8 +71,9 @@ sprintf("검증 대상기간 : %s ~ %s", TEST_FN, TEST_ST)
 
 
 ```
-
-```{r, echo=FALSE}
+   
+### 분석기간 정의 - 테이블
+```{r, echo=FALSE, tab.topcaption=TRUE}
 PRD <- list(WRK_YM,
             paste0(TARGET_FN," ~ ", TARGET_ST),
             TRAIN_ST,
@@ -76,5 +81,12 @@ PRD <- list(WRK_YM,
             paste0(TEST_FN," ~ ", TEST_ST))
 PRD_df <- as.data.frame(PRD,col.names = c("작업년월","타겟기간","기준년월","학습기간","검증기간"))
 
-knitr::kable(PRD_df,caption="분석기간 정의")
+knitr::kable(PRD_df,align='c')
+```
+
+   
+#### toc test
+```{r, echo=FALSE}
+print("toc 테스트 중입니다.")
+
 ```
