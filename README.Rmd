@@ -1,41 +1,30 @@
 ---
-title: "README"
-author: "Jimin KIM"
-date: '2021 6 8 '
+title: "고객민원예측모델" 
+author: "Jimin KIM"  
+date: "2021.06.08"  
 output: rmarkdown::github_document
 ---
 
 
 ```{r, include=FALSE}
 
+library(lubridate)
+
 TRNS_MNTH <-function(date, mm) {
 
 date <- as.Date(paste0(date,'01'), format='%Y%m%d')
-date
+bas_date <- as.Date(ifelse(mm < 0, date+months(-1), date+months(1)), origin = '1970-01-01')
+
+lubridate::month(date) <-lubridate::month(date)+mm
+date <- format(date, by='month', length=1, '%Y%m')
+bas_date <- format(bas_date, by='month',length=1, '%Y%m')
 
 if (abs(mm) > 1){
-  date_fn <- date
-  lubridate::month(date_fn) <-lubridate::month(date)-1
-
-  date_st <- date
-  lubridate::month(date_st) <-lubridate::month(date)+mm
-
-
-  date_st <- format(date_st, by='month', length=1, '%Y%m')
-  date_fn <- format(date_fn, by='month', length=1, '%Y%m')
-  
-   if(mm < 0 ){
-     return (c(date_st, date_fn))
-   } else { 
-     return (c(date_fn, date_st))
-  }
-                 
-  } else {
-  lubridate::month(date) <-lubridate::month(date)+mm
-  date <- format(date, by='month', length=1, '%Y%m')
+  return(c(bas_date,date))
+  } 
+else {
   return(date)
-  }
-
+}
 }
 
 
@@ -67,16 +56,19 @@ sprintf("검증기간 : %d개월", -test_m)
 ```{r, echo=FALSE}
 
 TARGET_YM <- TRNS_MNTH(WRK_YM, target_m)
-TRAIN_YM <- TRNS_MNTH(TARGET_YM[1], train_m)
-TEST_YM <- TRNS_MNTH(TRAIN_YM[1], test_m)
+TRAIN_YM <- TRNS_MNTH(TARGET_YM[2], train_m)
+TEST_YM <- TRNS_MNTH(TRAIN_YM[2], test_m)
+
+#NEW_YM <- TRNS_MNTH(WRK_YM, 12)
 
 #print(TARGET_YM)
 #print(TRAIN_YM)
 #print(TEST_YM)
+#print(NEW_YM)
 
-sprintf("타겟기간 : %s ~ %s", TARGET_YM[1], TARGET_YM[2])
-sprintf("학습기간 : %s ~ %s", TRAIN_YM[1], TRAIN_YM[2])
-sprintf("검증기간 : %s ~ %s", TEST_YM[1], TEST_YM[2])
+sprintf("타겟 대상기간 : %s ~ %s", TARGET_YM[2], TARGET_YM[1])
+sprintf("학습 대상기간 : %s ~ %s", TRAIN_YM[2], TRAIN_YM[1])
+sprintf("검증 대상기간 : %s ~ %s", TEST_YM[2], TEST_YM[1])
 
 ```
 
