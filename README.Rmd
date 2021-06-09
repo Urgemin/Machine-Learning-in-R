@@ -5,28 +5,81 @@ date: '2021 6 8 '
 output: rmarkdown::github_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+
+```{r, include=FALSE}
+
+TRNS_MNTH <-function(date, mm) {
+
+date <- as.Date(paste0(date,'01'), format='%Y%m%d')
+date
+
+if (abs(mm) > 1){
+  date_fn <- date
+  lubridate::month(date_fn) <-lubridate::month(date)-1
+
+  date_st <- date
+  lubridate::month(date_st) <-lubridate::month(date)+mm
+
+
+  date_st <- format(date_st, by='month', length=1, '%Y%m')
+  date_fn <- format(date_fn, by='month', length=1, '%Y%m')
+  
+   if(mm < 0 ){
+     return (c(date_st, date_fn))
+   } else { 
+     return (c(date_fn, date_st))
+  }
+                 
+  } else {
+  lubridate::month(date) <-lubridate::month(date)+mm
+  date <- format(date, by='month', length=1, '%Y%m')
+  return(date)
+  }
+
+}
+
+
 ```
 
-
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
 
 
 ```{r, echo=FALSE}
-BAS_YM <- format(Sys.Date(),'%Y%m')
-print(BAS_YM)
-sprintf("작업년월 : %s", BAS_YM)
+#WRK_YM <- format(Sys.Date(),'%Y%m')
+WRK_YM <- "202104"
+
+target_m <- -3
+train_m <- -12
+test_m <- -12
+
+
+sprintf("작업년월 : %s", WRK_YM)
+sprintf("타겟기간 : %d개월", -target_m)
+sprintf("학습기간 : %d개월", -train_m)
+sprintf("검증기간 : %d개월", -test_m)
+
+
+```
+
+2021.06
+2021.03 ~ 2021.05
+2020.03 ~ 2021.02
+2019.03 ~ 2021.02
+
+
+
+```{r, echo=FALSE}
+
+TARGET_YM <- TRNS_MNTH(WRK_YM, target_m)
+TRAIN_YM <- TRNS_MNTH(TARGET_YM[1], train_m)
+TEST_YM <- TRNS_MNTH(TRAIN_YM[1], test_m)
+
+#print(TARGET_YM)
+#print(TRAIN_YM)
+#print(TEST_YM)
+
+sprintf("타겟기간 : %s ~ %s", TARGET_YM[1], TARGET_YM[2])
+sprintf("학습기간 : %s ~ %s", TRAIN_YM[1], TRAIN_YM[2])
+sprintf("검증기간 : %s ~ %s", TEST_YM[1], TEST_YM[2])
+
 ```
 
