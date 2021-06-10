@@ -36,10 +36,9 @@ Jimin KIM
 |:--------:|:----------------:|:--------:|:----------------:|:----------------:|
 |  202104  | 202101 \~ 202103 |  202012  | 202001 \~ 202012 | 201901 \~ 201912 |
 
-    ## Warning: package 'DiagrammeR' was built under R version 4.0.5
+#### Diagram test
 
-<div id="htmlwidget-f69b8ec49bf32d758837" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f69b8ec49bf32d758837">{"x":{"diagram":"\nsequenceDiagram\n  participant Alice\n  participant Bob\n  Alice->>John: Hello John, how are you?\n  loop Healthcheck\n      John->>John: Fight against hypochondria\n  end\n  Note right of John: Rational thoughts<br/>prevail...\n  John-->>Alice: Great!\n  John->>Bob: How about you?\n  Bob-->>John: Jolly good!\n"},"evals":[],"jsHooks":[]}</script>
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 #### toc test
 
