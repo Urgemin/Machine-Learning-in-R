@@ -6,6 +6,7 @@ output:
   rmarkdown::github_document :
     toc : true
     toc_depth : 3
+always_allow_html : true
 ---
    
 ```{r, echo=FALSE}
@@ -90,6 +91,23 @@ PRD_df <- as.data.frame(PRD,col.names = c("작업년월","타겟기간","기준�
 knitr::kable(PRD_df,align='c')
 ```
 
+```{r}
+library(DiagrammeR)
+mermaid(diagram = '
+sequenceDiagram
+  participant Alice
+  participant Bob
+  Alice->>John: Hello John, how are you?
+  loop Healthcheck
+      John->>John: Fight against hypochondria
+  end
+  Note right of John: Rational thoughts<br/>prevail...
+  John-->>Alice: Great!
+  John->>Bob: How about you?
+  Bob-->>John: Jolly good!
+')
+```
+   
    
 #### toc test
 ```{r}

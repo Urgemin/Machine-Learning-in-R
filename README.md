@@ -3,6 +3,11 @@
 Jimin KIM
 2021.06.08
 
+-   [분석모델 분석기간](#분석모델-분석기간)
+    -   [분석기간 정의](#분석기간-정의)
+    -   [분석기간 대상](#분석기간-대상)
+    -   [분석기간 정의 - 테이블](#분석기간-정의---테이블)
+
 ## 분석모델 분석기간
 
 ### 분석기간 정의
@@ -30,6 +35,11 @@ Jimin KIM
 | 작업년월 |     타겟기간     | 기준년월 |     학습기간     |     검증기간     |
 |:--------:|:----------------:|:--------:|:----------------:|:----------------:|
 |  202104  | 202101 \~ 202103 |  202012  | 202001 \~ 202012 | 201901 \~ 201912 |
+
+    ## Warning: package 'DiagrammeR' was built under R version 4.0.5
+
+<div id="htmlwidget-f69b8ec49bf32d758837" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f69b8ec49bf32d758837">{"x":{"diagram":"\nsequenceDiagram\n  participant Alice\n  participant Bob\n  Alice->>John: Hello John, how are you?\n  loop Healthcheck\n      John->>John: Fight against hypochondria\n  end\n  Note right of John: Rational thoughts<br/>prevail...\n  John-->>Alice: Great!\n  John->>Bob: How about you?\n  Bob-->>John: Jolly good!\n"},"evals":[],"jsHooks":[]}</script>
 
 #### toc test
 
