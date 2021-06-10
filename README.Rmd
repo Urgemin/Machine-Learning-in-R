@@ -8,6 +8,12 @@ output:
     toc_depth : 3
 ---
    
+```{r, echo=FALSE}
+## Rmd 설정 - 전역옵션
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
 ```{r, include=FALSE}
 
 
@@ -27,7 +33,7 @@ date <- format(date, by='month', length=1, '%Y%m')
    
 ### 분석기간 정의
 
-```{r, echo=FALSE}
+```{r}
 #WRK_YM <- format(Sys.Date(),'%Y%m')
 
 ## 작업년월 설정
@@ -45,7 +51,7 @@ sprintf("검증기간 : %d개월", -test_m)
    
 ### 분석기간 대상
 
-```{r, echo=FALSE}
+```{r}
 
 TARGET_ST <- TRNS_MNTH(WRK_YM, -1)
 TARGET_FN <- TRNS_MNTH(WRK_YM, target_m)
@@ -73,7 +79,7 @@ sprintf("검증 대상기간 : %s ~ %s", TEST_FN, TEST_ST)
 ```
    
 ### 분석기간 정의 - 테이블
-```{r, echo=FALSE, tab.topcaption=TRUE}
+```{r, tab.topcaption=FALSE}
 PRD <- list(WRK_YM,
             paste0(TARGET_FN," ~ ", TARGET_ST),
             TRAIN_ST,
@@ -86,7 +92,7 @@ knitr::kable(PRD_df,align='c')
 
    
 #### toc test
-```{r, echo=FALSE}
+```{r}
 print("toc 테스트 중입니다.")
 
 ```
