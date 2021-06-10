@@ -1,7 +1,7 @@
 ---
 title: "예측모델" 
 author: "Jimin KIM"  
-date: "2021.06.08"  
+date: "`r format(Sys.Date())`"
 output: 
   rmarkdown::github_document :
     toc : true
@@ -93,7 +93,7 @@ knitr::kable(PRD_df,align='c')
 
 
 #### Diagram test
-```{r}
+```{r, include=FALSE}
 DiagrammeR::mermaid(diagram = "
 flowchart
 A-->B
