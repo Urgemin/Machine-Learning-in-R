@@ -79,23 +79,14 @@ DT:::datatable(iris)
 
 #### Diagram 
 ```{r, results='asis',fig.width=10, fig.height=10}
-DiagrammeR:::mermaid("graph LR
-A[Main]
-B[sub1-1]
-C[sub1-2]
-D[sub2-1]
-E[sub2-2]
-F([Result])
-A-->B
-subgraph subs1 [subGraphs1]
-B-.-C
-end
-A-->D
-subgraph subs2 [subGraphs2]
-D-.-E
-end
-C-->F
-E-->F")
+DiagrammeR:::mermaid("
+graph LR
+   A[Main]-->B[sub1-1]
+   B-.-C[sub1-2]
+   A-->D[sub2-1]
+   D-.-E[sub2-2]
+   C-->F([Result])
+   E-->F")
 ```
    
 #### toc test
