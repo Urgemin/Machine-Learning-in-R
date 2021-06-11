@@ -81,23 +81,20 @@ sprintf("검증 대상기간 : %s ~ %s", TEST_FN, TEST_ST)
    
 ### 분석기간 정의 - 테이블
 ```{r, tab.topcaption=FALSE}
-PRD <- list(WRK_YM,
-            paste0(TARGET_FN," ~ ", TARGET_ST),
-            TRAIN_ST,
-            paste0(TRAIN_FN," ~ ", TRAIN_ST),
-            paste0(TEST_FN," ~ ", TEST_ST))
-PRD_df <- as.data.frame(PRD,col.names = c("작업년월","타겟기간","기준년월","학습기간","검증기간"))
+PRD <- cbind(작업년월 = WRK_YM,
+            타겟기간 = paste0(TARGET_FN," ~ ", TARGET_ST),
+            기준년월 = TRAIN_ST,
+            학습기간 = paste0(TRAIN_FN," ~ ", TRAIN_ST),
+            검증기간 = paste0(TEST_FN," ~ ", TEST_ST))
+knitr::kable(PRD,align='c')
 
-knitr::kable(PRD_df,align='c')
 ```
 
 
-#### Diagram test
-```{r, include=FALSE}
-DiagrammeR::mermaid(diagram = "
-flowchart
-A-->B
-")
+#### DT datatable
+```{r}
+#library(DT)
+DT::datatable(iris)
 ```
    
    
