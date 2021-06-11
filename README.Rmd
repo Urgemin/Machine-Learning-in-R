@@ -3,14 +3,14 @@ title: "예측모델"
 author: "Jimin KIM"  
 date: "`r format(Sys.Date())`"
 output: 
-  rmarkdown::github_document :
-    toc : true
-    toc_depth : 3
+   rmarkdown:::github_document:
+      toc : true
+      toc_depth : 3
 always_allow_html : true
 ---
    
 ```{r, echo=FALSE}
-## Rmd 설정 - 전역옵션
+## Rmd 설정 - 전역 옵션
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -25,7 +25,6 @@ lubridate::month(date) <-lubridate::month(date)+mm
 date <- format(date, by='month', length=1, '%Y%m')
   return(date)
 }
-
 
 ```
 
@@ -44,16 +43,15 @@ target_m <- -3
 train_m <- -12
 test_m <- -12
 
-sprintf("타겟기간 : %d개월", -target_m)
-sprintf("학습기간 : %d개월", -train_m)
-sprintf("검증기간 : %d개월", -test_m)
-
 ```
-   
-### 분석기간 대상
 
+* `r sprintf("타겟기간 : %d개월", -target_m)`
+* `r sprintf("학습기간 : %d개월", -train_m)`
+* `r sprintf("검증기간 : %d개월", -test_m)`
+
+### 분석기간 정의
 ```{r}
-
+## 기간 계산
 TARGET_ST <- TRNS_MNTH(WRK_YM, -1)
 TARGET_FN <- TRNS_MNTH(WRK_YM, target_m)
 
@@ -63,43 +61,23 @@ TRAIN_FN <- TRNS_MNTH(TARGET_FN, train_m)
 TEST_ST <- TRNS_MNTH(TRAIN_FN, -1)
 TEST_FN <- TRNS_MNTH(TRAIN_FN, test_m)
 
-#print(TARGET_ST)
-#print(TARGET_FN)
-#print(TRAIN_ST)
-#print(TRAIN_FN)
-#print(TEST_ST)
-#print(TEST_FN)
-
-sprintf("작업년월 : %s", WRK_YM)
-sprintf("타겟 대상기간 : %s ~ %s", TARGET_FN, TARGET_ST)
-sprintf("기준년월 : %s", TRAIN_ST)
-sprintf("학습 대상기간 : %s ~ %s", TRAIN_FN, TRAIN_ST)
-sprintf("검증 대상기간 : %s ~ %s", TEST_FN, TEST_ST)
-
-
-```
-   
-### 분석기간 정의 - 테이블
-```{r, tab.topcaption=FALSE}
+## 테이블 생성
 PRD <- cbind(작업년월 = WRK_YM,
             타겟기간 = paste0(TARGET_FN," ~ ", TARGET_ST),
             기준년월 = TRAIN_ST,
             학습기간 = paste0(TRAIN_FN," ~ ", TRAIN_ST),
             검증기간 = paste0(TEST_FN," ~ ", TEST_ST))
-knitr::kable(PRD,align='c')
 
+knitr:::kable(PRD,align='c')
 ```
-
 
 #### DT datatable
 ```{r}
-#library(DT)
-DT::datatable(iris)
+DT:::datatable(iris)
 ```
    
    
 #### toc test
 ```{r}
 print("toc 테스트 중입니다.")
-
 ```
