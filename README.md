@@ -11,6 +11,7 @@ Jimin KIM
 
 ### 분석기간 정의
 
+-   <font size=5, width = 2, color="navy">`분석기간!!`</font>
 -   타겟기간 : 3개월
 -   학습기간 : 12개월
 -   검증기간 : 12개월
