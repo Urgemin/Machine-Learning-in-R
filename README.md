@@ -25,6 +25,10 @@ Jimin KIM
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
+#### Diagram
+
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
 #### toc test
 
     ## [1] "toc 테스트 중입니다."
